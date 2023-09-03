@@ -1,5 +1,8 @@
 # RPN-Stack-in-C++
 
+Note: This repo is purel for testing out additioinal functionality in C++ and Git
+For the initial project, check out RPN-Stack-Calculator-C--
+
 ## Index
 
 ## Documentatoin in English
