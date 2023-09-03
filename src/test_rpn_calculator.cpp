@@ -82,15 +82,16 @@ void runTests()
 
     // Store test cases in string array
     std::string expressions_rpn[] = {
-        "5 + 3",     //* 5 3 +
-        "(4 * 9)+3", //* 3 9 4 * +
-        "10 / 5",    //* 10 5 /
-        "10 / 4 "    //* 10 4 /
+        "5 + 3",         //* 5 3 +
+        "( 4 * 9 ) + 3", //* 4 9 * 3 +
+        "10 / 5",        //* 10 5 /
+        "10 / 4 "        //* 10 4 /
         // TODO: Add expressions to test evaluates as neccessary
     };
 
     // Store answers to test cases in doubles array
-    std::string expectResults_rpn[] = {"5 3 +", "3 9 4 * +", "10 5 /", "10 4 /"}; // TODO: Append results
+    std::string expectResults_rpn[] = {"5 3 + ", "4 9 * 3 + ", "10 5 / ", "10 4 / "}; // TODO: Append results
+    // TODO: Expressions evaluated have an extra space at the end i need to trim in header function
 
     // Run test cases
     for (int i = 0; i < (std::size(expectResults_rpn)); i++)
@@ -99,8 +100,9 @@ void runTests()
         std::string expression = infixToPostfix(expressions_rpn[i]);
 
         // Retrieve result after evaluating
-        std::cout << expression;
+        std::cout << "\"" << expression << "\"";
         assert(expression == expectResults_rpn[i]);
+        std::cout << " is " << expectResults_rpn[i];
         std::cout << " : TRUE (!)" << std::endl; //! Call only if assertion passes
     };
 
