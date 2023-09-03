@@ -17,8 +17,15 @@
 #include <cassert>
 #include <sstream>
 
+//* Include Inline to RPN for Testing
+#include "infixToPostfix.h"
+
+//* Include Validation Unit for Testing
+#include "validateInput.h"
+
 void runTests()
 {
+    //! Part 1 - Test for RPN Calculations
     // Store test cases in string array
     std::string expressions[] = {
         "5 3 +",     // * 5+3=8
@@ -70,6 +77,35 @@ void runTests()
         assert(result == expectResults[i]);
         std::cout << " : TRUE (!)" << std::endl; //! Call only if assertion passes
     };
+
+    //! Part 2 - Test for Inline to Postfix
+
+    // Store test cases in string array
+    std::string expressions_rpn[] = {
+        "5 + 3",     //* 5 3 +
+        "(4 * 9)+3", //* 3 9 4 * +
+        "10 / 5",    //* 10 5 /
+        "10 / 4 "    //* 10 4 /
+        // TODO: Add expressions to test evaluates as neccessary
+    };
+
+    // Store answers to test cases in doubles array
+    std::string expectResults_rpn[] = {"5 3 +", "3 9 4 * +", "10 5 /", "10 4 /"}; // TODO: Append results
+
+    // Run test cases
+    for (int i = 0; i < (std::size(expectResults_rpn)); i++)
+    {
+        // Call infix to postfix function
+        std::string expression = infixToPostfix(expressions_rpn[i]);
+
+        // Retrieve result after evaluating
+        std::cout << expression;
+        assert(expression == expectResults_rpn[i]);
+        std::cout << " : TRUE (!)" << std::endl; //! Call only if assertion passes
+    };
+
+    //! Part 3 - Test Validate Input function
+    // TODO: Still need to implement this part, but its low priority.
 
     // Call on message if all cases pass
     std::cout << "All Tests Successfully Passed!" << std::endl;
